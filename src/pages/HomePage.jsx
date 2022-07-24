@@ -15,15 +15,13 @@ function HomePage() {
     const [page, setPage] = useState(0);
     const [query, setQuery] = useState("");
 
-    console.log("photos", photos)
+
     useEffect(() => {
-        console.log("working 2")
         fetchImages();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);
 
     const fetchImages = async () => {
-        console.log("working 3")
         setLoading(true);
         let url;
         const urlPage = `&page=${page}`;
@@ -38,7 +36,6 @@ function HomePage() {
                 credentials: 'same-origin'
             });
             const data = await response.json();
-            console.log("data", data);
             setPhotos((oldPhotos) => {
                 if (query && page === 1) {
                     return data.results;
@@ -78,16 +75,12 @@ function HomePage() {
         return () => window.removeEventListener("scroll", event);
     }, []);
     const handleSubmit = (e) => {
-        console.log("working")
         e.preventDefault();
         setPage(1);
     };
     function decriptionHandler(event) {
         event.preventDefault();
         window.open(event['target'].innerText, '_blank')
-    }
-    function openDetailPage(event) {
-        console.log('event', event)
     }
     return (
         <div className="container">
@@ -108,7 +101,6 @@ function HomePage() {
                 {photos.map((image, index) => (
                     <div key={index} className="col-md-4">
                         <Link to={`/infiniteScrolling/DetailsPage/${image.id}`} state={{ data: image, allPhoto: photos }} > <Card
-                            onClick={openDetailPage}
                             className="antd-card"
                             hoverable
                             cover={
