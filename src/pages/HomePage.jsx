@@ -32,11 +32,10 @@ function HomePage() {
             url = `${mainUrl}${clientID}${urlPage}`;
         }
         try {
-            const response = await fetch(url, {
-                credentials: 'same-origin'
-            });
+            const response = await fetch(url);
             const data = await response.json();
             setPhotos((oldPhotos) => {
+                console.log("data", data)
                 if (query && page === 1) {
                     return data.results;
                 } else if (query) {
@@ -113,7 +112,7 @@ function HomePage() {
             <div className="row">
                 {photos.map((image, index) => (
                     <div key={index} className="col-md-4">
-                        <Link to={`/DetailsPage/${image.id}`} state={{ data: image, allPhoto: photos }} > <Card
+                        <Link to={`/infiniteScrolling/DetailsPage/${image.id}`} state={{ data: image, allPhoto: photos }} > <Card
                             className="antd-card"
                             hoverable
                             cover={
