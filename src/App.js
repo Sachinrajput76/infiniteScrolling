@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, HashRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import HomePage from './pages/HomePage'
 import DetailPage from './pages/DetailPage'
@@ -8,7 +8,7 @@ import DetailPage from './pages/DetailPage'
 const App = () => {
 
   return (<>
-    <Router>
+    <HashRouter>
       <Routes>
         <Route
           exact
@@ -22,7 +22,7 @@ const App = () => {
           element={<Navigate to="/infiniteScrolling" replace />}
         />
       </Routes>
-    </Router>
+    </HashRouter>
   </>)
 }
 

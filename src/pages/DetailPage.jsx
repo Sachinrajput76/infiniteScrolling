@@ -8,7 +8,7 @@ function DetailPage() {
     let navigate = useNavigate();
     const { id } = useParams();
     const location = useLocation()
-    const { data, allPhoto } = location.state
+    const { data } = location.state
     const [loading, setLoading] = useState(false);
     return (
         <div className="container">

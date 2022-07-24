@@ -8,10 +8,8 @@ const mainUrl = `https://api.unsplash.com/photos/`;
 const searchUrl = `https://api.unsplash.com/search/photos/`;
 
 function HomePage() {
-    const location = useLocation()
-    const { allPhoto } = location.state || {}
     const [loading, setLoading] = useState(false);
-    const [photos, setPhotos] = useState(allPhoto || []);
+    const [photos, setPhotos] = useState([]);
     const [page, setPage] = useState(0);
     const [query, setQuery] = useState("");
 
@@ -112,7 +110,7 @@ function HomePage() {
             <div className="row">
                 {photos.map((image, index) => (
                     <div key={index} className="col-md-4">
-                        <Link to={`/infiniteScrolling/DetailsPage/${image.id}`} state={{ data: image, allPhoto: photos }} > <Card
+                        <Link to={`/infiniteScrolling/DetailsPage/${image.id}`} state={{ data: image }} > <Card
                             className="antd-card"
                             hoverable
                             cover={
