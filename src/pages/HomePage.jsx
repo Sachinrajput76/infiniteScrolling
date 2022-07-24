@@ -110,19 +110,20 @@ function HomePage() {
             <div className="row">
                 {photos.map((image, index) => (
                     <div key={index} className="col-md-4">
-                        <Link to={`/infiniteScrolling/DetailsPage/${image.id}`} state={{ data: image }} > <Card
-                            className="antd-card"
-                            hoverable
-                            cover={
-                                <img
-                                    src={image.urls.regular}
-                                    alt="pic"
-                                    style={{ height: "150px", objectFit: "cover" }}
-                                />
-                            }
-                        >
-                            <Meta onClick={decriptionHandler} title={image.user.first_name ? image.user.first_name : "No name present"} description={image.user.social.portfolio_url ? image.user.social.portfolio_url : "No url present"} />
-                        </Card>
+                        <Link to={`/infiniteScrolling/DetailsPage/${image.id}`} state={{ data: image }} >
+                            <Card
+                                className="antd-card"
+                                hoverable
+                                cover={
+                                    <img
+                                        src={image.urls.regular}
+                                        alt="pic"
+
+                                    />
+                                }
+                            >
+                                <Meta onClick={decriptionHandler} title={image.user.first_name ? image.user.first_name : "No name present"} description={image.user.social.portfolio_url ? image.user.social.portfolio_url : "No url present"} />
+                            </Card>
                         </Link>
                     </div>
                 ))}

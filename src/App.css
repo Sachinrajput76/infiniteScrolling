@@ -38,10 +38,21 @@ body {
 
 .antd-card {
   margin-bottom: 20px !important;
+  transition: all 0.3s;
 }
 
-.antd-card:hover {
-  transition: 0.3s;
+.antd-card .ant-card-cover img {
+  transition: all 0.3s;
+  height: 150px;
+  object-fit: cover;
+}
+
+.antd-card:hover .ant-card-cover img {
+  opacity: 0.5;
+  filter: grayscale(100%);
+  object-fit: "fill";
+  padding: 4px;
+
 }
 
 .antd-card .ant-card-meta-description {
@@ -49,6 +60,10 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.antd-card:hover .ant-card-meta-description {
+  color: blueviolet;
 }
 
 .detailsPage-main {}
