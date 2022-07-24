@@ -16,7 +16,7 @@ const App = () => {
           element={<HomePage />} />
         <Route
           exact
-          path="infiniteScrolling/DetailsPage/:id"
+          path="/infiniteScrolling/DetailsPage/:id"
           element={<DetailPage />} />
         <Route
           path="*"
