@@ -8,7 +8,7 @@ import DetailPage from './pages/DetailPage'
 const App = () => {
 
   return (<>
-    <Router>
+    <Router basename="/infiniteScrolling">
       <Routes>
         <Route
           exact
