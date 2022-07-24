@@ -78,9 +78,23 @@ function HomePage() {
         e.preventDefault();
         setPage(1);
     };
+    function validURL(str) {
+        var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+            '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+            '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+        return !!pattern.test(str);
+    }
     function decriptionHandler(event) {
         event.preventDefault();
-        window.open(event['target'].innerText, '_blank')
+        const validateUrl = validURL(event['target'].innerText)
+        console.log("validateUrl", validateUrl)
+        if (validateUrl) {
+
+            window.open(event['target'].innerText, '_blank')
+        }
     }
     return (
         <div className="container">
