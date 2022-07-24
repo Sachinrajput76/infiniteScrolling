@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from 'react-router-dom'
 import "../App.css";
-import { Card, Button, Space, Skeleton, Spin } from "antd";
+import { Card, Button, Space, Skeleton, Spin, Tooltip } from "antd";
 const { Meta } = Card;
 const clientID = `?client_id=${process.env.REACT_APP_KEY}`;
 const mainUrl = `https://api.unsplash.com/photos/`;
@@ -122,7 +122,20 @@ function HomePage() {
                                     />
                                 }
                             >
-                                <Meta onClick={decriptionHandler} title={image.user.first_name ? image.user.first_name : "No name present"} description={image.user.social.portfolio_url ? image.user.social.portfolio_url : "No url present"} />
+                                <Tooltip placement="bottomLeft"
+                                    title={image.user.social.portfolio_url
+                                        ? image.user.social.portfolio_url
+                                        : "No url present"}
+                                >
+                                    <Meta onClick={decriptionHandler}
+                                        title={image.user.first_name
+                                            ? image.user.first_name
+                                            : "No name present"}
+                                        description={image.user.social.portfolio_url
+                                            ? image.user.social.portfolio_url
+                                            : "No url present"}
+                                    />
+                                </Tooltip>
                             </Card>
                         </Link>
                     </div>

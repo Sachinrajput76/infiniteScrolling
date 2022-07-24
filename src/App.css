@@ -55,10 +55,11 @@ body {
 }
 
 .antd-card .ant-card-meta-description {
-  width: 250px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: all 0.3s;
+
 }
 
 .antd-card:hover .ant-card-meta-description {
