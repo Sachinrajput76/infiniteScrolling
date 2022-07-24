@@ -9,18 +9,18 @@ const App = () => {
 
   return (<>
     <Router>
-      <Routes basename="/infiniteScrolling">
+      <Routes>
         <Route
           exact
-          path="/"
+          path="/infiniteScrolling"
           element={<HomePage />} />
         <Route
           exact
-          path="/DetailsPage/:id"
+          path="infiniteScrolling/DetailsPage/:id"
           element={<DetailPage />} />
         <Route
           path="*"
-          element={<Navigate to="/" replace />}
+          element={<Navigate to="/infiniteScrolling" replace />}
         />
       </Routes>
     </Router>
