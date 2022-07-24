@@ -17,11 +17,13 @@ function HomePage() {
 
     console.log("photos", photos)
     useEffect(() => {
+        console.log("working 2")
         fetchImages();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);
 
     const fetchImages = async () => {
+        console.log("working 3")
         setLoading(true);
         let url;
         const urlPage = `&page=${page}`;
@@ -76,6 +78,7 @@ function HomePage() {
         return () => window.removeEventListener("scroll", event);
     }, []);
     const handleSubmit = (e) => {
+        console.log("working")
         e.preventDefault();
         setPage(1);
     };
