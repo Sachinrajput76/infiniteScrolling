@@ -12,15 +12,14 @@ const App = () => {
       <Routes>
         <Route
           exact
-          path="/infiniteScrolling"
+          path="/infiniteScrolling/"
           element={<HomePage />} />
         <Route
-          exact
           path="/infiniteScrolling/DetailsPage/:id"
           element={<DetailPage />} />
         <Route
           path="*"
-          element={<Navigate to="/infiniteScrolling" replace />}
+          element={<Navigate to="/infiniteScrolling/" replace />}
         />
       </Routes>
     </Router>

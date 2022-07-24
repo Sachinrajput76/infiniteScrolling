@@ -92,7 +92,6 @@ function HomePage() {
         const validateUrl = validURL(event['target'].innerText)
         console.log("validateUrl", validateUrl)
         if (validateUrl) {
-
             window.open(event['target'].innerText, '_blank')
         }
     }
