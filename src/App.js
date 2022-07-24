@@ -9,7 +9,7 @@ const App = () => {
 
   return (<>
     <Router>
-      <Routes>
+      <Routes basename="/infiniteScrolling">
         <Route
           exact
           path="/"
