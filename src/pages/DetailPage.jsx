@@ -10,8 +10,6 @@ function DetailPage() {
     const location = useLocation()
     const { data, allPhoto } = location.state
     const [loading, setLoading] = useState(false);
-    console.log("idddddddd", id)
-    console.log("data", data)
     return (
         <div className="container">
             <div className="row detailsPage-main">

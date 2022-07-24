@@ -15,7 +15,7 @@ function HomePage() {
     const [page, setPage] = useState(0);
     const [query, setQuery] = useState("");
 
-    console.log("photos", photos)
+
     useEffect(() => {
         fetchImages();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -36,7 +36,6 @@ function HomePage() {
                 credentials: 'same-origin'
             });
             const data = await response.json();
-            console.log("data", data);
             setPhotos((oldPhotos) => {
                 if (query && page === 1) {
                     return data.results;
@@ -83,9 +82,6 @@ function HomePage() {
         event.preventDefault();
         window.open(event['target'].innerText, '_blank')
     }
-    function openDetailPage(event) {
-        console.log('event', event)
-    }
     return (
         <div className="container">
             <Space className="row inputBox" style={{ marginBottom: 16, marginTop: 10 }}>
@@ -105,7 +101,6 @@ function HomePage() {
                 {photos.map((image, index) => (
                     <div key={index} className="col-md-4">
                         <Link to={`/DetailsPage/${image.id}`} state={{ data: image, allPhoto: photos }} > <Card
-                            onClick={openDetailPage}
                             className="antd-card"
                             hoverable
                             cover={
