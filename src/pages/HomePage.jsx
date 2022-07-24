@@ -107,7 +107,7 @@ function HomePage() {
             <div className="row">
                 {photos.map((image, index) => (
                     <div key={index} className="col-md-4">
-                        <Link to={`/DetailsPage/${image.id}`} state={{ data: image, allPhoto: photos }} > <Card
+                        <Link to={`/infiniteScrolling/DetailsPage/${image.id}`} state={{ data: image, allPhoto: photos }} > <Card
                             onClick={openDetailPage}
                             className="antd-card"
                             hoverable
