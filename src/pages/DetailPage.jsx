@@ -10,7 +10,12 @@ function DetailPage() {
     const location = useLocation()
     const { data, photos, page, scrollPosition } = location.state
     const [loading, setLoading] = useState(false);
-    console.log("photos", photos)
+
+    useEffect(() => {
+        return () => {
+            window.history.replaceState({}, document.title)
+        }
+    }, [])
     return (
         <div className="container">
             <div className="row detailsPage-main">

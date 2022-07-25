@@ -37,6 +37,8 @@ function HomePage() {
     useEffect(() => {
         if (oldPage !== page && (!oldPhotos || !photos || oldPhotos?.length <= photos?.length)) {
             fetchImages();
+            window.scrollTo(0, 0);
+
         }
         else {
             setScrollPosition(oldScrollPosition);
