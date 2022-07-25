@@ -14,7 +14,7 @@ function HomePage() {
     const [photos, setPhotos] = useState([]);
     const [page, setPage] = useState(0);
     const [query, setQuery] = useState("");
-    const [scrollPosition, setScrollPosition] = useState(0);
+    const [scrollPosition, setScrollPosition] = useState(oldScrollPosition ? oldScrollPosition : 0);
 
     const handleScroll = () => {
         const position = window.pageYOffset;
