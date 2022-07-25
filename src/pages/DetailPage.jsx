@@ -8,13 +8,16 @@ function DetailPage() {
     let navigate = useNavigate();
     const { id } = useParams();
     const location = useLocation()
-    const { data } = location.state
+    const { data, photos, page, scrollPosition } = location.state
     const [loading, setLoading] = useState(false);
+    console.log("photos", photos)
     return (
         <div className="container">
             <div className="row detailsPage-main">
                 <div className="goBack">
-                    <Button type="primary" onClick={() => navigate('/')}>go back</Button>
+                    <Link to={'/infiniteScrolling'} state={{ oldPhotos: photos, oldPage: page, oldScrollPosition: scrollPosition }} >
+                        <Button type="primary">go back</Button>
+                    </Link>
                 </div>
                 <div className="details-image">
                     <img

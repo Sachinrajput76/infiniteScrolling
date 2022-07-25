@@ -8,14 +8,42 @@ const mainUrl = `https://api.unsplash.com/photos/`;
 const searchUrl = `https://api.unsplash.com/search/photos/`;
 
 function HomePage() {
+    const location = useLocation()
+    const { oldPhotos, oldPage, oldScrollPosition } = location.state || {}
     const [loading, setLoading] = useState(false);
     const [photos, setPhotos] = useState([]);
     const [page, setPage] = useState(0);
     const [query, setQuery] = useState("");
+    const [scrollPosition, setScrollPosition] = useState(0);
 
+    const handleScroll = () => {
+        const position = window.pageYOffset;
+        setScrollPosition(position);
+    };
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     useEffect(() => {
-        fetchImages();
+        oldPhotos && setPhotos(oldPhotos)
+        oldPage && setPage(oldPage)
+    }, [])
+
+    useEffect(() => {
+        if (oldPage !== page && (!oldPhotos || !photos || oldPhotos?.length <= photos?.length)) {
+            fetchImages();
+        }
+        else {
+            setScrollPosition(oldScrollPosition);
+            if (oldScrollPosition === scrollPosition) {
+                console.log("working")
+                window.scrollTo(0, oldScrollPosition);
+            }
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);
 
@@ -33,7 +61,6 @@ function HomePage() {
             const response = await fetch(url);
             const data = await response.json();
             setPhotos((oldPhotos) => {
-                console.log("data", data)
                 if (query && page === 1) {
                     return data.results;
                 } else if (query) {
@@ -110,7 +137,7 @@ function HomePage() {
             <div className="row">
                 {photos.map((image, index) => (
                     <div key={index} className="col-md-4">
-                        <Link to={`/infiniteScrolling/DetailsPage/${image.id}`} state={{ data: image }} >
+                        <Link to={`/infiniteScrolling/DetailsPage/${image.id}`} state={{ data: image, photos, page, scrollPosition }} >
                             <Card
                                 className="antd-card"
                                 hoverable
