@@ -37,13 +37,10 @@ function HomePage() {
     useEffect(() => {
         if (oldPage !== page && (!oldPhotos || !photos || oldPhotos?.length <= photos?.length)) {
             fetchImages();
-            window.scrollTo(0, 0);
-
         }
         else {
             setScrollPosition(oldScrollPosition);
             if (oldScrollPosition === scrollPosition) {
-                console.log("working")
                 window.scrollTo(0, oldScrollPosition);
             }
         }
@@ -117,7 +114,6 @@ function HomePage() {
     function decriptionHandler(event) {
         event.preventDefault();
         const validateUrl = validURL(event['target'].innerText)
-        console.log("validateUrl", validateUrl)
         if (validateUrl) {
             window.open(event['target'].innerText, '_blank')
         }
