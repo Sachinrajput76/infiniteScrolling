@@ -118,6 +118,43 @@ function HomePage() {
             window.open(event['target'].innerText, '_blank')
         }
     }
+    const newPhotos = photos.filter(function (ph) {
+        console.log("ph.image?.user?.social?.portfolio_url", ph.user?.social?.portfolio_url)
+        return validURL(ph.user?.social?.portfolio_url) === true;
+    })
+    const PhotosHtml = newPhotos?.map((image, index) => (
+        <div key={index} className="col-md-4">
+            <Link to={`/infiniteScrolling/DetailsPage/${image.id}`} state={{ data: image, photos, page, scrollPosition }} >
+                <Card
+                    className="antd-card"
+                    hoverable
+                    cover={
+                        <img
+                            src={image.urls.regular}
+                            alt="pic"
+
+                        />
+                    }
+                >
+                    <Tooltip placement="bottomLeft"
+                        title={image.user.social.portfolio_url
+                            ? image.user.social.portfolio_url
+                            : "No url present"}
+                    >
+                        <Meta onClick={decriptionHandler}
+                            title={image.user.first_name
+                                ? image.user.first_name
+                                : "No name present"}
+                            description={image.user.social.portfolio_url
+                                ? image.user.social.portfolio_url
+                                : "No url present"}
+                        />
+                    </Tooltip>
+                </Card>
+            </Link>
+        </div>
+    ))
+
     return (
         <div className="container">
             <Space className="row inputBox" style={{ marginBottom: 16, marginTop: 10 }}>
@@ -134,38 +171,7 @@ function HomePage() {
                 </Button>
             </Space>
             <div className="row">
-                {photos.map((image, index) => (
-                    <div key={index} className="col-md-4">
-                        <Link to={`/infiniteScrolling/DetailsPage/${image.id}`} state={{ data: image, photos, page, scrollPosition }} >
-                            <Card
-                                className="antd-card"
-                                hoverable
-                                cover={
-                                    <img
-                                        src={image.urls.regular}
-                                        alt="pic"
-
-                                    />
-                                }
-                            >
-                                <Tooltip placement="bottomLeft"
-                                    title={image.user.social.portfolio_url
-                                        ? image.user.social.portfolio_url
-                                        : "No url present"}
-                                >
-                                    <Meta onClick={decriptionHandler}
-                                        title={image.user.first_name
-                                            ? image.user.first_name
-                                            : "No name present"}
-                                        description={image.user.social.portfolio_url
-                                            ? image.user.social.portfolio_url
-                                            : "No url present"}
-                                    />
-                                </Tooltip>
-                            </Card>
-                        </Link>
-                    </div>
-                ))}
+                {PhotosHtml}
             </div>
         </div >
     );
